@@ -1,7 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    CSC422 Week 1 Assignment
+
+    This program will create a basic database program for managing
+    information (name and age) about pets. The database allows the user to add pet information
+    to the database, remove pet information, updating pet information, and searching for pets by
+    name or by age. 
  */
 package petdatabase;
 
