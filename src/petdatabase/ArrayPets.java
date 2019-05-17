@@ -22,7 +22,7 @@ public class ArrayPets {
              pets[0]= new Pet("Kitty", 8); 
 	     pets[1]= new Pet("Bruno", 7);
 	     pets[2]= new Pet("Boomer", 8);
-	     pets[3]= new Pet("Boomer", 7);
+	     pets[3]= new Pet("Boomer", 3);
 	     pets[4]= new Pet("Fiesty", 3);
 		
 	}
