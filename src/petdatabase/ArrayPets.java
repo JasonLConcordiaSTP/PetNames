@@ -26,7 +26,8 @@ public class ArrayPets {
 	     pets[4]= new Pet("Fiesty", 3);
 		
 	}
-	public static void show() {
+	//Show munu items
+        public static void show() {
 		int size=pets.length;
 		System.out.println("+-------------------+");
 		System.out.println("|ID | NAME     |AGE |");
@@ -38,7 +39,7 @@ public class ArrayPets {
 		System.out.println(size +" rows in set.");
 		System.out.println();
 	}
-	
+	//Add pet by name and age.
 	public static void add(String name, int age) {
 	     
 		// Convert array to list
@@ -53,8 +54,38 @@ public class ArrayPets {
 		Pet[] tempArray = new Pet[tempList.size()];
 		pets = tempList.toArray(tempArray);
 	}
-	
-	
+	//Search for pet by name
+	public static void searchPetByName(String name) {
+		int size=pets.length;
+		System.out.println("+-------------------+");
+		System.out.println("|ID | NAME     |AGE |");
+		System.out.println("+-------------------+");
+		
+		for(int i=0;i<size;i++) {		
+			if(pets[i].getName().toUpperCase().equals(name.toUpperCase()))
+					pets[i].show(i);
+		}
+		
+		System.out.println("+-------------------+");
+		System.out.println(size +" rows in set.");
+		System.out.println();
+	}
+	//Search for pet by age.
+	public static void searchPetByAge(int age) {
+		int size = pets.length;
+		System.out.println("+-------------------+");
+		System.out.println("|ID | NAME     |AGE |");
+		System.out.println("+-------------------+");
+		
+		for(int i=0;i<size;i++) {		
+			if(pets[i].getAge()==age)
+					pets[i].show(i);
+		}
+		
+		System.out.println("+-------------------+");
+		System.out.println(size +" rows in set.");
+		System.out.println();
+	}
 	
 	
 	     

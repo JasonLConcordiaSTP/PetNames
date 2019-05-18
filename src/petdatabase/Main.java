@@ -72,19 +72,21 @@ public class Main {
 			}
 			case 5: {
 				arr.show();
-				System.out.print("Search by name coming in future release.");
+				System.out.print("Enter a name to search: ");
+				String name=in.nextLine();
+				arr.searchPetByName(name);
 				break;	
 			}
 			case 6: {
 				arr.show();
-				System.out.print("Search by age coming in future release.");
+				System.out.print("Enter age to search: ");
+				int age=in.nextInt();
+				in.nextLine();
+				arr.searchPetByAge(age);
 				break;	
 			}
 			case 7: System.out.println("Goodbye!"); break;
 			}
 		}while(choice != 7);
-		
-		
 	}
-
 }

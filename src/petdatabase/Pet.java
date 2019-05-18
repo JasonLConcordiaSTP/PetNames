@@ -11,7 +11,7 @@ package petdatabase;
  */
 public class Pet {
 
-	public String name;
+	private String name;
 	private int age;
 	
 	public Pet() {
