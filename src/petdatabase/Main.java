@@ -42,7 +42,11 @@ public class Main {
 		do {
 			choice=menu();
 			switch(choice) {
-			case 1: arr.show(); break;
+			case 1:{ 
+                            arr.show();
+                        
+                            break;
+                        }
 			case 2:{
 				arr.show();
 				int count=0;
@@ -61,13 +65,21 @@ public class Main {
 			}
 			case 3:{
 				arr.show();
-				System.out.print("Update coming in future release.");
+				System.out.print("Enter the pet ID to update: ");
+				int id=in.nextInt();
+				in.nextLine();
+				System.out.print("Enter new name and new age: ");
+				String line=in.nextLine();
+				String[] items=line.split(" ");
+				arr.update(id,items[0], Integer.parseInt(items[1]));
 				break;
-				
 			}
 			case 4: {
 				arr.show();
-				System.out.print("Remove coming in future release.");
+				System.out.print("Enter the pet ID to remove: ");
+				int id=in.nextInt();
+				in.nextLine();
+				arr.remove(id);
 				break;	
 			}
 			case 5: {
@@ -85,7 +97,8 @@ public class Main {
 				arr.searchPetByAge(age);
 				break;	
 			}
-			case 7: System.out.println("Goodbye!"); break;
+			case 7: System.out.println("Goodbye!"); 
+                                break;
 			}
 		}while(choice != 7);
 	}

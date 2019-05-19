@@ -86,7 +86,31 @@ public class ArrayPets {
 		System.out.println(size +" rows in set.");
 		System.out.println();
 	}
-	
+	//Remove pet using index value.
+        public static void remove(int index) {
+	     
+		System.out.println(pets[index].getName() + " "+ pets[index].getAge()+ " was removed to ");
+		// Convert array to list
+		List<Pet> listFromArray = Arrays.asList(pets);
+		
+
+		// Create new list, because, List to Array always returns a fixed-size list backed by the specified array.
+		List<Pet> tempList = new ArrayList<Pet>(listFromArray);
+		tempList.remove(index);
+
+		//Convert list back to array
+		Pet[] tempArray = new Pet[tempList.size()];
+		pets = tempList.toArray(tempArray);
+		
+		}
+	//Update pet's Name / Age.
+	public static void update(int index, String name, int age) {
+		System.out.println( " changed to ");
+			System.out.println(pets[index].getName() + " "+ pets[index].getAge()+  " changed to "+ name+ " "+age);
+			pets[index].setName(name);
+			pets[index].setAge(age);
+		
+		}
 	
 	     
 }
