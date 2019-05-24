@@ -1,11 +1,15 @@
 /*
-    CSC422 Week 1 Assignment
+    CSC422 Week 2 Assignment
 
     This program will create a basic database program for managing
     information (name and age) about pets. The database allows the user to add pet information
     to the database, remove pet information, updating pet information, and searching for pets by
     name or by age. 
- */
+ 
+    Change Log:
+    Added requirements for Milestone 1 - Loading and saving pet data to file.
+
+*/
 package petdatabase;
 
 /**
@@ -13,7 +17,8 @@ package petdatabase;
  * @author LUNDQJA
  */
 
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
 	static Scanner in=new Scanner(System.in);
@@ -36,7 +41,7 @@ public class Main {
 	}
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		ArrayPets arr=new ArrayPets();
 		int choice=1;
 		do {
@@ -97,9 +102,12 @@ public class Main {
 				arr.searchPetByAge(age);
 				break;	
 			}
-			case 7: System.out.println("Goodbye!"); 
+			case 7: {
+                                arr.writeToFile();
+                                System.out.println("Goodbye!"); 
                                 break;
-			}
-		}while(choice != 7);
+                        }
+		}
+            }while(choice != 7);
 	}
 }

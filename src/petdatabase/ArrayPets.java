@@ -12,31 +12,77 @@ package petdatabase;
 import java.util.List; 
 import java.util.Arrays;
 import java.util.ArrayList; 
+import java.io.*; 
 
 public class ArrayPets {
 	static Pet pets[] = new Pet[5];
 	
-	
-	public ArrayPets() {
-	     //Load some test data
-             pets[0]= new Pet("Kitty", 8); 
-	     pets[1]= new Pet("Bruno", 7);
-	     pets[2]= new Pet("Boomer", 8);
-	     pets[3]= new Pet("Boomer", 3);
-	     pets[4]= new Pet("Fiesty", 3);
-		
+	//Method for loading Pet data from file.
+	public ArrayPets() throws FileNotFoundException {
+		  { 
+			  String[] items = null;
+			  int i=0;
+			try {
+		            FileInputStream fstream = new FileInputStream("pets.txt");
+		            DataInputStream in = new DataInputStream(fstream);
+		            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		            String strLine;
+		            
+		            while ((strLine = br.readLine()) != null) {
+		                items = strLine.split(" ");
+		                pets[i++]= new Pet(items[0], Integer.parseInt(items[1])); 
+		                
+		            }
+		            in.close();
+		        } 
+			  catch (FileNotFoundException e){
+					//e.printStackTrace();
+					}
+			  catch(ArrayIndexOutOfBoundsException exception) {
+		            	add(items[0], Integer.parseInt(items[1]));
+			  		}
+			  
+			  catch (Exception e){
+		            System.err.println("Error: " + e.getMessage());
+		            
+		            }
+		    }
+        }
+	//Method used to output pet data to file.
+	public static void writeToFile(){
+		try{
+	          FileWriter fr = new FileWriter("pets.txt");
+	          BufferedWriter br = new BufferedWriter(fr);
+	          PrintWriter out = new PrintWriter(br);
+	          for(int i=0; i<pets.length; i++){
+	            
+                    if(pets[i] != null){  
+	            out.write(pets[i].getName()+" "+pets[i].getAge());
+	                out.write("\n");
+                    }
+	          }
+	          out.close();
+	      }
+	      catch(IOException e){
+	       System.out.println(e);   
+	      }
 	}
-	//Show munu items
+        
+
+
+        //Show munu items
         public static void show() {
 		int size=pets.length;
 		System.out.println("+-------------------+");
 		System.out.println("|ID | NAME     |AGE |");
 		System.out.println("+-------------------+");
 		for(int i=0;i<size;i++) {
-			pets[i].show(i);
+                    if(pets[i] != null){
+                    pets[i].show(i);
+                    }
 		}
 		System.out.println("+-------------------+");
-		System.out.println(size +" rows in set.");
+		System.out.println(Arrays.stream(pets).filter(e -> e != null).count() +" rows in set.");
 		System.out.println();
 	}
 	//Add pet by name and age.
@@ -67,7 +113,7 @@ public class ArrayPets {
 		}
 		
 		System.out.println("+-------------------+");
-		System.out.println(size +" rows in set.");
+		System.out.println(Arrays.stream(pets).filter(e -> e != null).count() +" rows in set.");
 		System.out.println();
 	}
 	//Search for pet by age.
@@ -83,7 +129,7 @@ public class ArrayPets {
 		}
 		
 		System.out.println("+-------------------+");
-		System.out.println(size +" rows in set.");
+		System.out.println(Arrays.stream(pets).filter(e -> e != null).count() +" rows in set.");
 		System.out.println();
 	}
 	//Remove pet using index value.
