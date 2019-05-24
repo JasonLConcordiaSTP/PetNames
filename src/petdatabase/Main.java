@@ -62,12 +62,23 @@ public class Main {
 				if(line.equalsIgnoreCase("done"))
 					break;
 				String[] items=line.split(" ");
-				arr.add(items[0], Integer.parseInt(items[1]));
+				//Validate input (name age).
+                                if(items.length !=2) {
+					System.out.println("Error: "+ line+ " is not a valid input.");
+					continue;
+				}
+				int age=Integer.parseInt(items[1]);
+				//Validate age input (1 to 20)
+                                if(age<1 || age>20) {
+					System.out.println("Error: "+ line+ " is not a valid age.");
+					continue;
+				}
+				arr.add(items[0], age);
 				count++;
 				}
 				System.out.println(count + " pets added.");
-				break;
-			}
+				break;			
+                        }
 			case 3:{
 				arr.show();
 				System.out.print("Enter the pet ID to update: ");
@@ -76,8 +87,8 @@ public class Main {
 				System.out.print("Enter new name and new age: ");
 				String line=in.nextLine();
 				String[] items=line.split(" ");
-				arr.update(id,items[0], Integer.parseInt(items[1]));
-				break;
+                                    arr.update(id,items[0], Integer.parseInt(items[1]));
+                                break;
 			}
 			case 4: {
 				arr.show();

@@ -94,8 +94,15 @@ public class ArrayPets {
 	
 		// Create new list, because, List to Array always returns a fixed-size list backed by the specified array.
 		List<Pet> tempList = new ArrayList<Pet>(listFromArray);
-		tempList.add(new Pet(name,age));
-	
+                //Check to see if the database is full
+                if(Arrays.stream(pets).filter(e -> e != null).count() < 5)
+                {
+                tempList.add(new Pet(name,age));
+                }
+                else
+                {
+                System.out.println("Error: Database is full.");
+                }	
 		//Convert list back to array
 		Pet[] tempArray = new Pet[tempList.size()];
 		pets = tempList.toArray(tempArray);
@@ -135,27 +142,38 @@ public class ArrayPets {
 	//Remove pet using index value.
         public static void remove(int index) {
 	     
-		System.out.println(pets[index].getName() + " "+ pets[index].getAge()+ " was removed to ");
-		// Convert array to list
+                // Convert array to list
 		List<Pet> listFromArray = Arrays.asList(pets);
 		
 
 		// Create new list, because, List to Array always returns a fixed-size list backed by the specified array.
 		List<Pet> tempList = new ArrayList<Pet>(listFromArray);
-		tempList.remove(index);
-
+                //Validate that the index value exists.
+                if( index > 4 || tempList.get(index)== null ) {
+                    System.out.println("Error: ID " + index + " does not exist.");
+                }
+                else {
+                    System.out.println(pets[index].getName() + " "+ pets[index].getAge()+ " was removed. ");
+                    tempList.remove(index);
+               
 		//Convert list back to array
 		Pet[] tempArray = new Pet[tempList.size()];
 		pets = tempList.toArray(tempArray);
+                }
 		
 		}
 	//Update pet's Name / Age.
 	public static void update(int index, String name, int age) {
-		System.out.println( " changed to ");
+		
+                    try {    
 			System.out.println(pets[index].getName() + " "+ pets[index].getAge()+  " changed to "+ name+ " "+age);
 			pets[index].setName(name);
 			pets[index].setAge(age);
-		
+                    }
+                    catch(NullPointerException e) 
+        { 
+            System.out.println("Error: ID not found."); 
+        } 
 		}
 	
 	     
